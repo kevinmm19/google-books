@@ -32,20 +32,10 @@ export default new Vuex.Store({
         async [FIND_BOOKS](context, payload) {
             try {
                 const booksAPI = process.env.VUE_APP_BOOKS_API_URL;
-                //console.log('booksAPI env:', booksAPI+payload.search);
-                //const query = payload.search.replace(/[, ]+/g,'');
-                //console.log('query :', query);
-                //const { data } = await axios.get(`${booksAPI}${query}`);
-                //console.log('payload.search :', payload.search);
                 const { data } = await axios.get(`${booksAPI}${payload.search}`);
-                //console.log('books :', data);
-                //data.items.filter((book, index) => data.items.indexOf(book)  == index);
-                // context.commit(SET_BOOKS, { books: data.items });
-                // context.commit(SET_FLAGS, { error: false, loading: false });
                 return data.items;
             }
             catch (error) {
-                // console.log('error :', error);
                 context.commit(SET_FLAGS, { error: true, loading: false });
             }
         }
